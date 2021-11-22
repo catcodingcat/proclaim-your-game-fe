@@ -22,7 +22,7 @@ export default function AllCategories() {
                 className="single-category"
               >
                 <h3>{category.slug}</h3>
-                <p className="descriptio ">{category.description}</p>
+                <p className="description">{category.description}</p>
                 <button>View this category's reviews!</button>
               </Link>
             </div>
