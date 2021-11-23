@@ -1,29 +1,75 @@
 import { getReviews } from "../Utils/api";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 
 export default function AllReviews() {
+  let { search } = useLocation();
+  let { category } = useParams();
   let navigate = useNavigate();
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    getReviews().then((reviews) => {
+    getReviews(category, search).then((reviews) => {
       setReviews(reviews);
     });
-  }, []);
+  }, [category, search]);
 
   const handleAuthorClick = (e) => {
     e.preventDefault();
     navigate(`/users/${e.target.value}`);
   };
 
+  const handleSortBySelect = (e) => {
+    e.preventDefault();
+    navigate(`/reviews?sort_by=${e.target.value}`);
+  };
+
+  const handleOrderSelect = (e) => {
+    e.preventDefault();
+    navigate(`/reviews?order=${e.target.value}`);
+  };
+
   return (
     <main>
       <h2>All Reviews</h2>
+      <section id="review-queries">
+        <label>Sort By: </label>
+        <select className="sort-by-options" onChange={handleSortBySelect}>
+          <option key="created_at" value="created_at" selected>
+            Date posted
+          </option>
+          <option key="owner" value="owner">
+            Username
+          </option>
+          <option key="title" value="title">
+            Review Title
+          </option>
+          <option key="category" value="category">
+            Category
+          </option>
+          <option key="votes" value="votes">
+            Votes
+          </option>
+          <option key="comment_count" value="comment_count">
+            Comment Count
+          </option>
+        </select>
+      </section>
+      <section id="review-queries">
+        <label>Sort By: </label>
+        <select className="order-options" onChange={handleOrderSelect}>
+          <option key="desc" value="desc" selected>
+            Descending
+          </option>
+          <option key="asc" value="asc">
+            Ascending
+          </option>
+        </select>
+      </section>
       <section id="review-section">
         {reviews.map((review) => {
           return (
-            <div className="cards">
+            <div key={review.review_id} className="cards">
               <h3>{review.title}</h3>
               <button
                 className="owner"

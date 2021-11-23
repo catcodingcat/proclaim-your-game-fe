@@ -16,7 +16,7 @@ export default function AllUsers() {
       <section id="user-section">
         {users.map((user) => {
           return (
-            <div className="cards">
+            <div key={user.username} className="cards">
               <Link to={`/users/${user.username}`} className="single-user">
                 <h3>{user.username}</h3>
                 <button>View User!</button>

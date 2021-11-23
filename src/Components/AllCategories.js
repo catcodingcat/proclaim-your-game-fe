@@ -16,13 +16,14 @@ export default function AllCategories() {
       <section id="category-section">
         {categories.map((category) => {
           return (
-            <div className="cards">
+            <div key={category.slug} className="cards">
+              <h3>{category.slug}</h3>
+              <p className="description">{category.description}</p>
               <Link
-                to={`/categories/${category.category_id}`}
+                key={category.slug}
+                to={`/reviews/category/${category.slug}`}
                 className="single-category"
               >
-                <h3>{category.slug}</h3>
-                <p className="description">{category.description}</p>
                 <button>View this category's reviews!</button>
               </Link>
             </div>

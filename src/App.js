@@ -17,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/reviews" element={<AllReviews />} />
+        <Route path="/reviews/category/:category" element={<AllReviews />} />
         <Route path="/categories" element={<AllCategories />} />
         <Route path="/users" element={<AllUsers />} />
         <Route path="/users/:username" element={<User />} />
