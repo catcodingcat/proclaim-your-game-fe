@@ -4,11 +4,19 @@ import { Link } from "react-router-dom";
 
 export default function AllCategories() {
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
+    setIsLoading(true);
     getCategories().then((categories) => {
       setCategories(categories);
+      setIsLoading(false);
     });
   }, []);
+
+  if (isLoading) {
+    return <p>...loading</p>;
+  }
 
   return (
     <main>

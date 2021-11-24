@@ -4,11 +4,19 @@ import { Link } from "react-router-dom";
 
 export default function AllUsers() {
   const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
+    setIsLoading(true);
     getUsers().then((users) => {
       setUsers(users);
+      setIsLoading(false);
     });
   }, []);
+
+  if (isLoading) {
+    return <p>...loading</p>;
+  }
 
   return (
     <main>

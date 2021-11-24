@@ -9,10 +9,13 @@ export default function AllReviews() {
   const [reviews, setReviews] = useState([]);
   const [sortBy, setSortBy] = useState("created_at");
   const [order, setOrder] = useState("desc");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     getReviews(category, sortBy, order).then((reviews) => {
       setReviews(reviews);
+      setIsLoading(false);
     });
   }, [category, sortBy, order]);
 
@@ -20,6 +23,10 @@ export default function AllReviews() {
     e.preventDefault();
     navigate(`/users/${e.target.value}`);
   };
+
+  if (isLoading) {
+    return <p>...loading</p>;
+  }
 
   return (
     <main>

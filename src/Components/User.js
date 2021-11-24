@@ -5,12 +5,19 @@ import { useEffect, useState } from "react";
 export default function User() {
   const { username } = useParams();
   const [user, setUser] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     getUser(username).then((user) => {
       setUser(user);
+      setIsLoading(false);
     });
   }, [username]);
+
+  if (isLoading) {
+    return <p>...loading</p>;
+  }
 
   return (
     <main>

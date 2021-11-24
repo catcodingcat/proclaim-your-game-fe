@@ -38,7 +38,15 @@ export const getUser = (username) => {
 
 export const getReviewComments = (id) => {
   return ProclaimYourGameApi.get(`/reviews/${id}/comments`).then((res) => {
-    console.log(res.data.comments, "<<<<res comments");
     return res.data.comments;
   });
+};
+
+export const patchVotes = (id, inc, type) => {
+  return ProclaimYourGameApi.patch(`/${type}/${id}`, { inc_votes: inc }).then(
+    (res) => {
+      console.log(res.data, "<<<res.data");
+      return res.data;
+    }
+  );
 };
