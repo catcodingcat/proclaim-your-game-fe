@@ -1,32 +1,24 @@
 import { getReviews } from "../Utils/api";
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function AllReviews() {
-  let { search } = useLocation();
   let { category } = useParams();
   let navigate = useNavigate();
+
   const [reviews, setReviews] = useState([]);
+  const [sortBy, setSortBy] = useState("created_at");
+  const [order, setOrder] = useState("desc");
 
   useEffect(() => {
-    getReviews(category, search).then((reviews) => {
+    getReviews(category, sortBy, order).then((reviews) => {
       setReviews(reviews);
     });
-  }, [category, search]);
+  }, [category, sortBy, order]);
 
   const handleAuthorClick = (e) => {
     e.preventDefault();
     navigate(`/users/${e.target.value}`);
-  };
-
-  const handleSortBySelect = (e) => {
-    e.preventDefault();
-    navigate(`/reviews?sort_by=${e.target.value}`);
-  };
-
-  const handleOrderSelect = (e) => {
-    e.preventDefault();
-    navigate(`/reviews?order=${e.target.value}`);
   };
 
   return (
@@ -34,7 +26,12 @@ export default function AllReviews() {
       <h2>All Reviews</h2>
       <section id="review-queries">
         <label>Sort By: </label>
-        <select className="sort-by-options" onChange={handleSortBySelect}>
+        <select
+          className="sort-by-options"
+          onChange={(e) => {
+            setSortBy(e.target.value);
+          }}
+        >
           <option key="created_at" value="created_at" selected>
             Date posted
           </option>
@@ -57,7 +54,12 @@ export default function AllReviews() {
       </section>
       <section id="review-queries">
         <label>Sort By: </label>
-        <select className="order-options" onChange={handleOrderSelect}>
+        <select
+          className="order-options"
+          onChange={(e) => {
+            setOrder(e.target.value);
+          }}
+        >
           <option key="desc" value="desc" selected>
             Descending
           </option>
