@@ -53,7 +53,7 @@ export default function AllReviews() {
         </select>
       </section>
       <section id="review-queries">
-        <label>Sort By: </label>
+        <label>Order: </label>
         <select
           className="order-options"
           onChange={(e) => {
