@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { UserContext } from "./Context/user";
 import { useContext } from "react";
 
-import Login from "./Components/Login";
+import CurrentUser from "./Components/CurrentUser";
 import Title from "./Components/Title";
 import Nav from "./Components/Nav.js";
 import Home from "./Components/Home.js";
@@ -12,34 +12,13 @@ import AllCategories from "./Components/AllCategories";
 import AllUsers from "./Components/AllUsers";
 import User from "./Components/User";
 import Review from "./Components/Review";
-
-// const RequireLogin = ({ children }) => {
-//   const { isLoggedIn } = useContext(UserContext);
-//   return isLoggedIn ? children : <Login />;
-// };
+import PostComment from "./Components/PostComment";
 
 function App() {
-  const { user, setUser, isLoggedIn } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   return (
     <div className="App">
-      {/* {isLoggedIn ? (
-        <button
-          onClick={() => {
-            setUser({});
-          }}
-        >
-          Log out
-        </button>
-      ) : (
-        <button
-          onClick={() => {
-            setUser({ username: "Cat" });
-          }}
-        >
-          {" "}
-          Log in
-        </button> */}
-      {/* )} */}
+      <CurrentUser />
       <Title />
       <Nav />
       <Routes>
@@ -49,6 +28,7 @@ function App() {
         <Route path="/categories" element={<AllCategories />} />
         <Route path="/users" element={<AllUsers />} />
         <Route path="/users/:username" element={<User />} />
+        <Route path="/reviews/:review_id/comments" element={<PostComment />} />
         <Route path="/reviews/:review_id" element={<Review />} />
       </Routes>
     </div>

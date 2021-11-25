@@ -20,9 +20,12 @@ h1 {
   background-color: rgb(121, 180, 183);
   color: rgb(254, 251, 243);
   grid-area: header;
-  padding: 30px;
   margin: 0px;
   font-size: 60px;
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 nav {
@@ -66,23 +69,67 @@ h3 {
   grid-area: title;
 }
 
-.cards,
-.card {
+.cards {
   margin: 20px;
   border-radius: 20px;
   background-color: rgb(254, 251, 243);
   padding-top: 30px;
-  height: 50vh;
-  width: 40vh;
   border: solid rgb(121, 180, 183);
   display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+#review-cards {
+  height: 50vh;
+  width: 40vh;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas:
     "title"
     "image"
-    "main";
-  justify-items: center;
-  align-items: center;
+    "main"
+    "button";
+  padding-bottom: 30px;
+}
+
+#category-cards {
+  height: 20vh;
+  width: 45vh;
+  grid-template-rows: 1fr 2fr 1fr;
+  grid-template-areas:
+    "title"
+    "main"
+    "button";
+  padding: 30px;
+}
+
+#user-cards {
+}
+
+#review-content {
+  grid-area: info;
+}
+
+#single-review-card {
+  height: min-content;
+  width: 100vh;
+  grid-template-rows: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "image title"
+    "image info"
+    "image button";
+  padding: 0px;
+  margin-bottom: 0px;
+}
+
+#comment-cards {
+  height: min-content;
+  width: 100vh;
+  margin: 5px;
+}
+
+#single-user-card {
 }
 
 .owner {
@@ -104,9 +151,25 @@ button {
   border: none;
   background-color: rgb(248, 240, 223);
   color: rgb(121, 180, 183);
+  grid-area: button;
 }
 
-.login {
-  background-color: red;
-  color: green;
+.review-card {
+}
+
+#current-user {
+  text-align: right;
+}
+
+.login-area {
+  position: fixed;
+  display: flex;
+  height: 5vh;
+  background: none;
+  right: 0;
+  padding: 0;
+}
+
+#current-user img {
+  height: 3vh;
 }

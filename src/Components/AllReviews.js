@@ -10,13 +10,20 @@ export default function AllReviews() {
   const [sortBy, setSortBy] = useState("created_at");
   const [order, setOrder] = useState("desc");
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews(category, sortBy, order).then((reviews) => {
-      setReviews(reviews);
-      setIsLoading(false);
-    });
+    getReviews(category, sortBy, order)
+      .then((reviews) => {
+        setReviews(reviews);
+        setIsLoading(false);
+        setIsError(false);
+      })
+      .catch(() => {
+        setIsError(true);
+        setIsLoading(false);
+      });
   }, [category, sortBy, order]);
 
   const handleAuthorClick = (e) => {
@@ -78,7 +85,7 @@ export default function AllReviews() {
       <section id="review-section">
         {reviews.map((review) => {
           return (
-            <div key={review.review_id} className="cards">
+            <div key={review.review_id} className="cards" id="review-cards">
               <h3>{review.title}</h3>
               <button
                 className="owner"
@@ -105,6 +112,7 @@ export default function AllReviews() {
             </div>
           );
         })}
+        {isError ? <p>Oops, something went wrong!</p> : null}
       </section>
     </main>
   );

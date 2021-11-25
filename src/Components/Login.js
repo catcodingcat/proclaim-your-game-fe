@@ -1,25 +1,36 @@
 import { UserContext } from "../Context/user";
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Login() {
+  console.log("IN LOGIN");
   const [username, setUsername] = useState("");
   const { setUser } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     /////check login details with api
-    setUser({ username });
+    // setUser({ username });
   };
+
   return (
     <form onSubmit={handleSubmit}>
-      <label>
+      <fieldset>
+        <label htmlFor="username-login"></label>
         Username:
         <input
+          type="text"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        ></input>
-      </label>
-      <button>Login</button>
+          name="username"
+          id="username"
+          required
+          onChange={(e) => {
+            console.log(e.target.value, "<<<<etarva");
+            setUsername(e.target.value);
+          }}
+        />
+      </fieldset>
+      <button type="submit">Login</button>
     </form>
   );
 }

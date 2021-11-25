@@ -1,3 +1,3 @@
 export default function Title() {
-  return <h1>Proclaim Your Game</h1>;
+  return <h1 className="title">Proclaim Your Game</h1>;
 }

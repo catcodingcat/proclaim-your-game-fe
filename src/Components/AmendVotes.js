@@ -1,23 +1,24 @@
 import { patchVotes } from "../Utils/api";
 import { useState, useContext } from "react";
-// import { UserContext } from "../Context/user";
+import { UserContext } from "../Context/user";
 
-export default function AmendVotes({ id, votes, type }) {
+export default function AmendVotes({ id, votes, type, author }) {
   const [addedVotes, setAddedVotes] = useState(0);
   const [isError, setIsError] = useState(false);
-  // const { currentUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  const isDisabled = author === user.username;
 
   const handleVoteClick = (e) => {
     e.preventDefault();
     const vote = parseInt(e.target.value);
     setAddedVotes((prevVotes) => prevVotes + vote);
+    ///set error is false in a .then?
+    //do I need a .catch in optimistic rendering?
     patchVotes(id, vote, type).catch(() => {
       setIsError(true);
       setAddedVotes((prevVotes) => prevVotes - vote);
     });
   };
-
-  // const isDisabled = username === currentUser.username;
 
   return (
     <>
@@ -26,7 +27,7 @@ export default function AmendVotes({ id, votes, type }) {
         value="1"
         onClick={handleVoteClick}
         className="votes-button"
-        // disabled={isDisabled}
+        disabled={isDisabled}
       >
         +1
       </button>
@@ -34,7 +35,7 @@ export default function AmendVotes({ id, votes, type }) {
         value="-1"
         onClick={handleVoteClick}
         className="votes-button"
-        // disabled={isDisabled}
+        disabled={isDisabled}
       >
         -1
       </button>
