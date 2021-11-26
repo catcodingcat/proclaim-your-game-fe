@@ -16,8 +16,8 @@ export default function ItemPage() {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isDeleted, setIsDeleted] = useState(false);
-  const [isReviewError, setIsReviewError] = useState(false);
-  const [isCommentError, setIsCommentError] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
@@ -25,10 +25,12 @@ export default function ItemPage() {
       .then((review) => {
         setReview(review);
         setIsLoading(false);
-        setIsReviewError(false);
+        setIsError(false);
       })
-      .catch(() => {
-        setIsReviewError(true);
+      .catch((err) => {
+        setIsLoading(false);
+        setIsError(true);
+        setErrorMsg(err.response.data.msg);
       });
   }, [review_id]);
 
@@ -37,10 +39,12 @@ export default function ItemPage() {
     return getReviewComments(review_id)
       .then((comments) => {
         setComments(comments);
-        setIsCommentError(false);
+        setIsError(false);
       })
-      .catch(() => {
-        setIsCommentError(true);
+      .catch((err) => {
+        setIsLoading(false);
+        setIsError(true);
+        setErrorMsg(err.response.data.msg);
       });
   };
 
@@ -49,9 +53,8 @@ export default function ItemPage() {
     navigate(`/users/${e.target.value}`);
   };
 
-  if (isLoading) {
-    return <p className="loading">...loading</p>;
-  }
+  if (isLoading) return <p className="loading">...loading</p>;
+  if (isError) return <p className="error">{errorMsg}</p>;
 
   return (
     <main>
@@ -87,14 +90,21 @@ export default function ItemPage() {
           <p className="comment_count">Comments: {review.comment_count}</p>
           <button onClick={handleCommentClick}>See comments</button>
         </div>
-        {isReviewError ? <p>Oops, review not found.</p> : null}
       </section>
       <section id="comment-section">
         {comments.map((comment) => {
           return (
             <div key={comment.comment_id} id="comment-cards">
               <p className="comment-body">{comment.body}</p>
-              <p className="comment-author">{comment.author}</p>
+
+              <button
+                className="comment-author"
+                value={comment.author}
+                onClick={handleAuthorClick}
+              >
+                {comment.author}
+              </button>
+
               <p className="comment-date">{comment.created_at}</p>
               <AmendVotes
                 id={comment.comment_id}
@@ -113,20 +123,17 @@ export default function ItemPage() {
             </div>
           );
         })}
+        {isDeleted ? (
+          <p className="confirmation" onMouseMove={() => setIsDeleted(false)}>
+            Your comment has been deleted.
+          </p>
+        ) : null}
         <PostComment
           comments={comments}
           setComments={setComments}
           review_id={review_id}
           setReview={setReview}
         />
-        {isDeleted ? (
-          <p className="confirmation" onMouseMove={() => setIsDeleted(false)}>
-            Your comment has been deleted.
-          </p>
-        ) : null}
-        {isCommentError ? (
-          <p className="error">Oops, something went wrong!</p>
-        ) : null}
       </section>
     </main>
   );

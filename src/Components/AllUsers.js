@@ -6,6 +6,7 @@ export default function AllUsers() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
@@ -15,15 +16,15 @@ export default function AllUsers() {
         setIsLoading(false);
         setIsError(false);
       })
-      .catch(() => {
-        setIsError(true);
+      .catch((err) => {
         setIsLoading(false);
+        setIsError(true);
+        setErrorMsg(err.response.data.msg);
       });
   }, []);
 
-  if (isLoading) {
-    return <p className="loading">...loading</p>;
-  }
+  if (isLoading) return <p className="loading">...loading</p>;
+  if (isError) return <p className="error">{errorMsg}</p>;
 
   return (
     <main>
@@ -39,7 +40,6 @@ export default function AllUsers() {
             </div>
           );
         })}
-        {isError ? <p>Oops, something went wrong!</p> : null}
       </section>
     </main>
   );

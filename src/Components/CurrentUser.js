@@ -39,22 +39,22 @@ export default function CurrentUser() {
 
   const login = () => {
     return (
-      <form>
-        <fieldset>
-          <label htmlFor="username-login"></label>
+      <form className="username-form">
+        <fieldset className="username-login">
+          <label id="username-login-label"></label>
           Username:
           <input
             type="text"
             value={user.username}
             name="username"
-            id="username"
+            id="username-login-input"
             required
             onChange={(e) => {
               setUsername(e.target.value);
             }}
           />
         </fieldset>
-        <button onClick={handleLogIn} type="submit">
+        <button id="username-login-button" onClick={handleLogIn} type="submit">
           Login
         </button>
         {isError ? (
@@ -78,7 +78,7 @@ export default function CurrentUser() {
         <Link to={`/users/${user.username}`} className="current-user-link">
           <p className="login-username">{user.username}</p>
         </Link>
-        <button className="login-button" onClick={handleLogOut}>
+        <button className="logout-button" onClick={handleLogOut}>
           Log out
         </button>
       </section>
@@ -86,10 +86,10 @@ export default function CurrentUser() {
   } else {
     return (
       <section className="login-area" id="login">
+        <div>{loginForm}</div>
         <button className="login-button" onClick={() => setLoginForm(login)}>
           Login
         </button>
-        <div>{loginForm}</div>
       </section>
     );
   }

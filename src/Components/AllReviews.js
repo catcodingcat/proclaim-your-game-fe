@@ -11,6 +11,7 @@ export default function AllReviews() {
   const [order, setOrder] = useState("desc");
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
@@ -20,9 +21,10 @@ export default function AllReviews() {
         setIsLoading(false);
         setIsError(false);
       })
-      .catch(() => {
-        setIsError(true);
+      .catch((err) => {
         setIsLoading(false);
+        setIsError(true);
+        setErrorMsg(err.response.data.msg);
       });
   }, [category, sortBy, order]);
 
@@ -31,13 +33,16 @@ export default function AllReviews() {
     navigate(`/users/${e.target.value}`);
   };
 
-  if (isLoading) {
-    return <p className="loading">...loading</p>;
-  }
+  if (isLoading) return <p className="loading">...loading</p>;
+  if (isError) return <p className="error">{errorMsg}</p>;
 
   return (
     <main>
-      <h2>All Reviews</h2>
+      {category ? (
+        <h2 className="category-reviews-title">All {category} Reviews</h2>
+      ) : (
+        <h2>All Reviews</h2>
+      )}
       <section id="review-queries">
         <label className="query-label">Sort By: </label>
         <select
@@ -114,7 +119,6 @@ export default function AllReviews() {
             </div>
           );
         })}
-        {isError ? <p>Oops, something went wrong!</p> : null}
       </section>
     </main>
   );

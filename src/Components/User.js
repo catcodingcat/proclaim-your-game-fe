@@ -7,6 +7,7 @@ export default function User() {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
@@ -16,14 +17,15 @@ export default function User() {
         setIsLoading(false);
         setIsError(false);
       })
-      .catch(() => {
+      .catch((err) => {
+        setIsLoading(false);
         setIsError(true);
+        setErrorMsg(err.response.data.msg);
       });
   }, [username]);
 
-  if (isLoading) {
-    return <p className="loading">...loading</p>;
-  }
+  if (isLoading) return <p className="loading">...loading</p>;
+  if (isError) return <p className="error">{errorMsg}</p>;
 
   return (
     <main>
@@ -32,7 +34,6 @@ export default function User() {
         <div id="single-user-card">
           <p className="name">{user.name}</p>
           <img className="image" src={user.avatar_url} alt={user.username} />
-          {isError ? <p>Oops, username not found.</p> : null}
         </div>
       </section>
     </main>

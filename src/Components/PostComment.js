@@ -41,7 +41,6 @@ export default function PostComment({
           <input
             type="text"
             value={commentToAdd.comment_body}
-            textarea
             name="comment_body"
             id="comment-body-input"
             required
@@ -57,7 +56,9 @@ export default function PostComment({
         </fieldset>
         <button type="submit">Post comment!</button>
         {isError ? (
-          <p className="error">You must be logged in to post a comment.</p>
+          <p className="custom-error">
+            You must be logged in to post a comment.
+          </p>
         ) : null}
         {isPosted ? (
           <p className="confirmation">Your comment has been posted.</p>

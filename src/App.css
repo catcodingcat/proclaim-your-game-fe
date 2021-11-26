@@ -71,6 +71,16 @@ section {
   background-color: rgb(198, 223, 224);
 }
 
+#user-section {
+  height: 100%;
+  background-color: rgb(198, 223, 224);
+}
+
+#temporary-review-message {
+  background-color: red;
+  color: white;
+}
+
 h2 {
   height: 12vh;
   color: rgb(157, 157, 157);
@@ -80,6 +90,10 @@ h2 {
   justify-content: center;
 }
 
+.category-reviews-title {
+  text-transform: capitalize;
+}
+
 h3 {
   padding: 15px;
   padding-top: 0px;
@@ -87,7 +101,8 @@ h3 {
   grid-area: title;
 }
 
-.loading {
+.loading,
+.error {
   margin-top: 20vh;
   color: rgb(157, 157, 157);
 }
@@ -241,10 +256,13 @@ button {
 
 #comment-section {
   padding-top: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
 }
 
 #comment-cards {
-  margin: 20px;
   border-radius: 20px;
   background-color: rgb(254, 251, 243);
   border: solid rgb(121, 180, 183);
@@ -258,7 +276,7 @@ button {
   padding-bottom: 10px;
   padding-top: 10px;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto auto;
   grid-template-columns: 1fr 2fr 0.5fr 0.5fr;
   grid-template-areas:
     "body body votes votes"
@@ -269,6 +287,8 @@ button {
   width: 430px;
   margin-top: 0;
   padding-top: 0;
+  margin-left: 14px;
+  margin-right: 14px;
   padding-bottom: 15px;
 }
 
@@ -303,21 +323,34 @@ button {
 
 .comment-author {
   grid-area: author;
+  background-color: rgb(254, 251, 243);
   color: rgb(157, 157, 157);
   text-align: left;
+  padding-top: 1.1px;
   padding-left: 15px;
+  height: 10px;
 }
 
 .comment-date {
   grid-area: date;
   color: rgb(157, 157, 157);
+  height: 10px;
+  margin-bottom: 10px;
 }
 
-.error,
-.confirmation {
+.delete-comment-button {
+  grid-area: plus;
+  width: 130px;
+}
+
+.confirmation,
+.custom-error {
   color: rgb(121, 180, 183);
   text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
+
 .votes-count {
   grid-area: votes;
 }
@@ -365,14 +398,13 @@ button {
   width: max-content;
   right: 0;
   padding: 0;
-  padding-left: 1vh;
   justify-content: right;
 }
 
 .login-avatar {
   height: 3vh;
   border-radius: 2vh;
-  margin-left: 0.8vw;
+  margin-left: 1.4vw;
   margin-top: 0.5vh;
 }
 
@@ -389,10 +421,49 @@ button {
   font-weight: bolder;
 }
 
-.login-button {
+.login-button,
+.logout-button {
   height: 4vh;
   width: 12vw;
   padding: 0;
   border-radius: 0;
   margin-left: 0.8vw;
+}
+
+.login-button {
+  border-bottom-left-radius: 20px;
+  margin-left: 0;
+}
+
+.username-form {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-areas: "username button";
+}
+
+.username-login {
+  margin-bottom: 20px;
+  border: none;
+  grid-area: username;
+}
+
+#username-login-label {
+  color: rgb(121, 180, 183);
+  padding: 6px;
+}
+
+#username-login-input {
+  margin-top: 2px;
+  width: 120px;
+  height: 20px;
+  border: solid rgb(121, 180, 183);
+  border-width: thin;
+  border-radius: 20px;
+  margin-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#username-login-button {
+  grid-area: button;
 }

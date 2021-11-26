@@ -13,6 +13,7 @@ import AllUsers from "./Components/AllUsers";
 import User from "./Components/User";
 import Review from "./Components/Review";
 import PostComment from "./Components/PostComment";
+import PathError from "./Components/PathError";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -30,6 +31,7 @@ function App() {
         <Route path="/users/:username" element={<User />} />
         <Route path="/reviews/:review_id/comments" element={<PostComment />} />
         <Route path="/reviews/:review_id" element={<Review />} />
+        <Route path="/*" element={<PathError />} />
       </Routes>
     </div>
   );

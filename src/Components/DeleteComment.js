@@ -33,11 +33,15 @@ export default function DeleteComment({
 
   return (
     <div>
-      <button value={comment.comment_id} onClick={handleDeleteComment}>
+      <button
+        className="delete-comment-button"
+        value={comment.comment_id}
+        onClick={handleDeleteComment}
+      >
         Delete comment
       </button>
       {isError ? (
-        <p className="error">
+        <p className="custom-error">
           You must be logged in as the comment author to delete this comment.
         </p>
       ) : null}

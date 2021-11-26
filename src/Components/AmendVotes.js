@@ -6,7 +6,6 @@ export default function AmendVotes({ id, votes, type, author }) {
   const [addedVotes, setAddedVotes] = useState(0);
   const [isError, setIsError] = useState(false);
   const { user } = useContext(UserContext);
-  const isDisabled = author === user.username;
 
   const handleVoteClick = (e) => {
     e.preventDefault();
@@ -23,22 +22,16 @@ export default function AmendVotes({ id, votes, type, author }) {
   return (
     <>
       <p className="vote-count">Votes: {votes + addedVotes}</p>
-      <button
-        value="1"
-        onClick={handleVoteClick}
-        className="add-vote"
-        disabled={isDisabled}
-      >
-        +1
-      </button>
-      <button
-        value="-1"
-        onClick={handleVoteClick}
-        className="minus-vote"
-        disabled={isDisabled}
-      >
-        -1
-      </button>
+      {author !== user.username ? (
+        <button value="1" onClick={handleVoteClick} className="add-vote">
+          +1
+        </button>
+      ) : null}
+      {author !== user.username ? (
+        <button value="-1" onClick={handleVoteClick} className="minus-vote">
+          -1
+        </button>
+      ) : null}
       {isError ? <p>Oops, something went wrong.</p> : null}
     </>
   );
