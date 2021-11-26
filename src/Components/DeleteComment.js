@@ -37,7 +37,7 @@ export default function DeleteComment({
         Delete comment
       </button>
       {isError ? (
-        <p>
+        <p className="error">
           You must be logged in as the comment author to delete this comment.
         </p>
       ) : null}

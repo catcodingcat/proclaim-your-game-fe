@@ -22,11 +22,11 @@ export default function AmendVotes({ id, votes, type, author }) {
 
   return (
     <>
-      <p>Votes: {votes + addedVotes}</p>
+      <p className="vote-count">Votes: {votes + addedVotes}</p>
       <button
         value="1"
         onClick={handleVoteClick}
-        className="votes-button"
+        className="add-vote"
         disabled={isDisabled}
       >
         +1
@@ -34,7 +34,7 @@ export default function AmendVotes({ id, votes, type, author }) {
       <button
         value="-1"
         onClick={handleVoteClick}
-        className="votes-button"
+        className="minus-vote"
         disabled={isDisabled}
       >
         -1

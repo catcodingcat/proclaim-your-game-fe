@@ -39,9 +39,9 @@ export default function AllReviews() {
     <main>
       <h2>All Reviews</h2>
       <section id="review-queries">
-        <label>Sort By: </label>
+        <label className="query-label">Sort By: </label>
         <select
-          className="sort-by-options"
+          className="query-options"
           onChange={(e) => {
             setSortBy(e.target.value);
           }}
@@ -65,11 +65,9 @@ export default function AllReviews() {
             Comment Count
           </option>
         </select>
-      </section>
-      <section id="review-queries">
-        <label>Order: </label>
+        <label className="query-label">Order: </label>
         <select
-          className="order-options"
+          className="query-options"
           onChange={(e) => {
             setOrder(e.target.value);
           }}
@@ -86,7 +84,7 @@ export default function AllReviews() {
         {reviews.map((review) => {
           return (
             <div key={review.review_id} className="cards" id="review-cards">
-              <h3>{review.title}</h3>
+              <h3 className="review-title">{review.title}</h3>
               <button
                 className="owner"
                 value={review.owner}
@@ -95,14 +93,18 @@ export default function AllReviews() {
                 {review.owner}
               </button>
               <img
-                className="image"
+                className="review-image"
                 src={review.review_img_url}
                 alt={review.title}
               ></img>
-              <p className="category">Category: {review.category}</p>
-              <p className="created_at">Created at: {review.created_at}</p>
-              <p className="votes">Votes: {review.votes}</p>
-              <p className="comment_count">Comments: {review.comment_count}</p>
+              <div className="review-info">
+                <p className="category">Category: {review.category}</p>
+                <p className="created_at">Created at: {review.created_at}</p>
+                <p className="votes">Votes: {review.votes}</p>
+                <p className="comment_count">
+                  Comments: {review.comment_count}
+                </p>
+              </div>
               <Link
                 to={`/reviews/${review.review_id}`}
                 className="single-review"

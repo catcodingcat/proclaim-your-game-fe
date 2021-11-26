@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getReview, getReviewComments } from "../Utils/api";
 import { UserContext } from "../Context/user";
 import { useContext } from "react";
@@ -10,6 +10,7 @@ import DeleteComment from "./DeleteComment";
 export default function ItemPage() {
   const { review_id } = useParams();
   const { user } = useContext(UserContext);
+  let navigate = useNavigate();
 
   const [review, setReview] = useState({});
   const [comments, setComments] = useState([]);
@@ -43,34 +44,47 @@ export default function ItemPage() {
       });
   };
 
+  const handleAuthorClick = (e) => {
+    e.preventDefault();
+    navigate(`/users/${e.target.value}`);
+  };
+
   if (isLoading) {
     return <p className="loading">...loading</p>;
   }
 
   return (
     <main>
-      <h2>{review.title}</h2>
+      <h2>Review</h2>
       <section>
-        <div className="cards" id="single-review-card">
+        <div id="single-review-card">
+          <h3>{review.title}</h3>
+          <button
+            className="review-card-owner"
+            value={review.owner}
+            onClick={handleAuthorClick}
+          >
+            {review.owner}
+          </button>
           <img
-            className="image"
+            className="review-image"
             src={review.review_img_url}
             alt={review.title}
           />
-          <div id="review-content">
-            <p className="author">{review.owner}</p>
-            <p className="body">{review.review_body}</p>
+          <p className="review-body">{review.review_body}</p>
+
+          <div className="review-info">
             <p className="designer">Game designer: {review.designer}</p>
             <p className="category">Game category: {review.category}</p>
             <p className="created_at">{review.created_at}</p>
-            <AmendVotes
-              id={review.review_id}
-              votes={review.votes}
-              type="review"
-              author={review.author}
-            />
-            <p className="comment_count">Comments: {review.comment_count}</p>
           </div>
+          <AmendVotes
+            id={review.review_id}
+            votes={review.votes}
+            type="review"
+            author={review.author}
+          />
+          <p className="comment_count">Comments: {review.comment_count}</p>
           <button onClick={handleCommentClick}>See comments</button>
         </div>
         {isReviewError ? <p>Oops, review not found.</p> : null}
@@ -78,10 +92,10 @@ export default function ItemPage() {
       <section id="comment-section">
         {comments.map((comment) => {
           return (
-            <div key={comment.comment_id} className="cards" id="comment-cards">
-              <p>{comment.body}</p>
-              <p>{comment.author}</p>
-              <p>Created at: {comment.created_at}</p>
+            <div key={comment.comment_id} id="comment-cards">
+              <p className="comment-body">{comment.body}</p>
+              <p className="comment-author">{comment.author}</p>
+              <p className="comment-date">{comment.created_at}</p>
               <AmendVotes
                 id={comment.comment_id}
                 votes={comment.votes}
@@ -106,11 +120,13 @@ export default function ItemPage() {
           setReview={setReview}
         />
         {isDeleted ? (
-          <p onMouseMove={() => setIsDeleted(false)}>
+          <p className="confirmation" onMouseMove={() => setIsDeleted(false)}>
             Your comment has been deleted.
           </p>
         ) : null}
-        {isCommentError ? <p>Oops, something went wrong!</p> : null}
+        {isCommentError ? (
+          <p className="error">Oops, something went wrong!</p>
+        ) : null}
       </section>
     </main>
   );

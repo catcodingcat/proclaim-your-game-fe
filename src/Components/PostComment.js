@@ -33,16 +33,17 @@ export default function PostComment({
   };
 
   return (
-    <div>
-      <h2>Add a comment</h2>
+    <div className="cards" id="add-comment-card">
+      <h2 id="add-a-comment">Add a comment</h2>
       <form onSubmit={handleSubmit}>
-        <fieldset>
-          <label htmlFor="comment_body">Type your comment here: </label>
+        <fieldset className="add-comment">
+          <label id="comment-body-label">Type your comment here: </label>
           <input
             type="text"
             value={commentToAdd.comment_body}
+            textarea
             name="comment_body"
-            id="comment_body"
+            id="comment-body-input"
             required
             onChange={(e) => {
               setCommentToAdd({
@@ -55,8 +56,12 @@ export default function PostComment({
           />
         </fieldset>
         <button type="submit">Post comment!</button>
-        {isError ? <p>You must be logged in to post a comment.</p> : null}
-        {isPosted ? <p>Your comment has been posted.</p> : null}
+        {isError ? (
+          <p className="error">You must be logged in to post a comment.</p>
+        ) : null}
+        {isPosted ? (
+          <p className="confirmation">Your comment has been posted.</p>
+        ) : null}
       </form>
     </div>
   );

@@ -29,9 +29,9 @@ export default function User() {
     <main>
       <h2>{user.username}</h2>
       <section>
-        <div className="cards" id="single-user-cards">
-          <img className="image" src={user.avatar_url} alt={user.username} />
+        <div id="single-user-card">
           <p className="name">{user.name}</p>
+          <img className="image" src={user.avatar_url} alt={user.username} />
           {isError ? <p>Oops, username not found.</p> : null}
         </div>
       </section>
