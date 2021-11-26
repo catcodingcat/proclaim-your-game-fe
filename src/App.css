@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Genos&display=swap");
+
 * {
   padding: 0px;
   margin: 0px;
@@ -5,7 +7,7 @@
 
 .App {
   text-align: center;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Genos", sans-serif;
   min-height: 100vh;
   display: grid;
   grid-template-columns: 100%;
@@ -21,8 +23,8 @@ h1 {
   color: rgb(254, 251, 243);
   grid-area: header;
   margin: 0px;
-  font-size: 60px;
-  height: 15vh;
+  font-size: 9vh;
+  height: 20vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,14 +34,19 @@ nav {
   background-color: rgb(248, 240, 223);
   color: rgb(248, 240, 223);
   grid-area: nav;
-  padding: 15px;
-  font-size: 20px;
+  height: 5vh;
+  font-size: 2.8vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-link {
-  padding: 80px;
+  margin-left: 4vw;
+  margin-right: 4vw;
   color: rgb(121, 180, 183);
-  font-weight: bold;
+  text-decoration: none;
+  font-weight: bolder;
 }
 
 main {
@@ -53,13 +60,22 @@ section {
   padding-top: 40px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  align-content: flex-start;
+  justify-content: center;
+}
+
+#welcome {
+  height: 100%;
+  background-color: rgb(198, 223, 224);
 }
 
 h2 {
-  padding: 50px;
+  height: 12vh;
   color: rgb(157, 157, 157);
   font-size: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h3 {
@@ -67,6 +83,11 @@ h3 {
   padding-top: 0px;
   color: rgb(157, 157, 157);
   grid-area: title;
+}
+
+.loading {
+  margin-top: 20vh;
+  color: rgb(157, 157, 157);
 }
 
 .cards {
@@ -78,6 +99,15 @@ h3 {
   display: grid;
   justify-items: center;
   align-items: center;
+}
+
+#home-card {
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "title"
+    "main"
+    "buttons";
+  padding: 3vh;
 }
 
 #review-cards {
@@ -104,6 +134,12 @@ h3 {
 }
 
 #user-cards {
+  height: 8vh;
+  width: 18vh;
+  align-content: center;
+  justify-content: center;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
 }
 
 #review-content {
@@ -157,19 +193,44 @@ button {
 .review-card {
 }
 
-#current-user {
-  text-align: right;
-}
-
 .login-area {
+  border-bottom-left-radius: 20px;
+  background-color: rgb(198, 223, 224);
   position: fixed;
   display: flex;
-  height: 5vh;
-  background: none;
+  height: 4vh;
+  width: max-content;
   right: 0;
   padding: 0;
+  padding-left: 1vh;
+  /* padding-top: 0.5vh; */
+  justify-content: right;
 }
 
-#current-user img {
+.login-avatar {
   height: 3vh;
+  border-radius: 2vh;
+  margin-left: 0.8vw;
+  margin-top: 0.5vh;
+}
+
+.login-username {
+  text-align: right;
+  color: rgb(121, 180, 183);
+  margin-left: 0.8vw;
+  margin-top: 0.5vh;
+  margin-right: 0.5vh;
+}
+
+.current-user-link {
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+.login-button {
+  height: 4vh;
+  width: 12vw;
+  padding: 0;
+  border-radius: 0;
+  margin-left: 0.8vw;
 }

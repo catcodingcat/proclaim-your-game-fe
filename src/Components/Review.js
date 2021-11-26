@@ -44,7 +44,7 @@ export default function ItemPage() {
   };
 
   if (isLoading) {
-    return <p>...loading</p>;
+    return <p className="loading">...loading</p>;
   }
 
   return (

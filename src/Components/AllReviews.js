@@ -32,7 +32,7 @@ export default function AllReviews() {
   };
 
   if (isLoading) {
-    return <p>...loading</p>;
+    return <p className="loading">...loading</p>;
   }
 
   return (

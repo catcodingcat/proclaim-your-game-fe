@@ -22,7 +22,7 @@ export default function User() {
   }, [username]);
 
   if (isLoading) {
-    return <p>...loading</p>;
+    return <p className="loading">...loading</p>;
   }
 
   return (
