@@ -48,6 +48,7 @@ export default function AllReviews() {
         <select
           className="query-options"
           onChange={(e) => {
+            e.preventDefault();
             setSortBy(e.target.value);
           }}
         >
@@ -74,6 +75,7 @@ export default function AllReviews() {
         <select
           className="query-options"
           onChange={(e) => {
+            e.preventDefault();
             setOrder(e.target.value);
           }}
         >

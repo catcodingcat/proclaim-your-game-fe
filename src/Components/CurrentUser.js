@@ -1,7 +1,6 @@
 import { UserContext } from "../Context/user";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import Login from "./Login";
 import { getUser } from "../Utils/api";
 
 export default function CurrentUser() {
@@ -9,10 +8,14 @@ export default function CurrentUser() {
   const [loginForm, setLoginForm] = useState("");
   const [username, setUsername] = useState("original state");
   const [isError, setIsError] = useState(false);
+  const [hideLogin, setHideLogin] = useState(false);
+  const [hideUsernameLogin, setHideUsernameLogin] = useState(true);
 
   const handleLogOut = (e) => {
     e.preventDefault();
     setUser({});
+    setHideLogin(false);
+    setHideUsernameLogin(true);
   };
 
   const handleLogIn = (e) => {
@@ -38,6 +41,8 @@ export default function CurrentUser() {
   // };
 
   const login = () => {
+    setHideLogin(true);
+    setHideUsernameLogin(false);
     return (
       <form className="username-form">
         <fieldset className="username-login">
@@ -54,7 +59,11 @@ export default function CurrentUser() {
             }}
           />
         </fieldset>
-        <button id="username-login-button" onClick={handleLogIn} type="submit">
+        <button
+          className="username-login-button"
+          onClick={handleLogIn}
+          type="submit"
+        >
           Login
         </button>
         {isError ? (
@@ -86,10 +95,12 @@ export default function CurrentUser() {
   } else {
     return (
       <section className="login-area" id="login">
-        <div>{loginForm}</div>
-        <button className="login-button" onClick={() => setLoginForm(login)}>
-          Login
-        </button>
+        {!hideUsernameLogin ? <div>{loginForm}</div> : null}
+        {!hideLogin ? (
+          <button className="login-button" onClick={() => setLoginForm(login)}>
+            Login
+          </button>
+        ) : null}
       </section>
     );
   }
