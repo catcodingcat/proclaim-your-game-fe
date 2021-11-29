@@ -227,11 +227,12 @@ button {
 
 #single-review-card {
   height: min-content;
-  width: 350px;
-  margin: 20px;
+  width: 450px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 20px;
   border-radius: 20px;
   background-color: rgb(254, 251, 243);
-  padding: 40px;
   border: solid rgb(121, 180, 183);
 }
 
@@ -256,8 +257,6 @@ button {
 
 #comment-section {
   padding-top: 0;
-  /* display: flex;
-  flex-direction: column; */
   align-items: center;
 }
 
@@ -266,15 +265,13 @@ button {
   border-radius: 20px;
   background-color: rgb(254, 251, 243);
   border: solid rgb(121, 180, 183);
-  width: 410px;
+  height: min-content;
+  width: 450px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 20px;
   margin-top: 0;
   margin-bottom: 8px;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  padding-top: 10px;
   display: grid;
   grid-template-rows: auto auto;
   grid-template-columns: 1fr 2fr 0.5fr 0.5fr;
@@ -284,11 +281,13 @@ button {
 }
 
 #add-comment-card {
-  width: 430px;
   margin-top: 0;
   padding-top: 0;
-  margin-left: 14px;
-  margin-right: 14px;
+  height: min-content;
+  width: 450px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 20px;
   padding-bottom: 15px;
 }
 
@@ -303,6 +302,7 @@ button {
 
 #comment-body-label {
   color: rgb(121, 180, 183);
+  width: 350px;
 }
 
 #comment-body-input {
@@ -312,7 +312,9 @@ button {
   border: solid rgb(121, 180, 183);
   border-width: thin;
   border-radius: 20px;
-  padding: 5px;
+  padding: 10px;
+  font-size: 17px;
+  font-family: "Genos", sans-serif;
 }
 
 .comment-body {
@@ -339,8 +341,9 @@ button {
 }
 
 .delete-comment-button {
-  grid-area: plus;
+  grid-area: minus;
   width: 130px;
+  align-items: right;
 }
 
 .confirmation,
@@ -351,7 +354,10 @@ button {
   margin-bottom: 10px;
 }
 
-.votes-count {
+.vote-count {
+  padding-top: 2vh;
+  text-align: right;
+  padding-right: 20px;
   grid-area: votes;
 }
 

@@ -38,8 +38,7 @@ export default function PostComment({
       <form onSubmit={handleSubmit}>
         <fieldset className="add-comment">
           <label id="comment-body-label">Type your comment here: </label>
-          <input
-            type="text"
+          <textarea
             value={commentToAdd.comment_body}
             name="comment_body"
             id="comment-body-input"
