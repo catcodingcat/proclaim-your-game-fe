@@ -12,9 +12,8 @@ export default function Home() {
           </h3>
           <p id="temporary-review-message">
             Hello lovely NC reviewers! Please note that when nchelp is back open
-            I am hoping to sort the following issues: 1. Queries re-rendering
-            when selected; 2. User login --extra! Hopefully you enjoy the rest
-            of my site! Thanks you lovely lot!
+            I am hoping to sort the user login! Hopefully you enjoy the rest of
+            my site! Thanks you lovely lot!
           </p>
           <p>
             Search up our classic categories, read reviews about a family

@@ -20,7 +20,6 @@ export default function ItemPage() {
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    setIsLoading(true);
     getReview(review_id)
       .then((review) => {
         setReview(review);

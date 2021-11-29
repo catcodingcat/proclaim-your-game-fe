@@ -9,7 +9,6 @@ export default function AllCategories() {
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    setIsLoading(true);
     getCategories()
       .then((categories) => {
         setCategories(categories);

@@ -9,7 +9,6 @@ export default function AllUsers() {
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    setIsLoading(true);
     getUsers()
       .then((users) => {
         setUsers(users);

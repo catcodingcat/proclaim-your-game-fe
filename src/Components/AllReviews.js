@@ -14,7 +14,6 @@ export default function AllReviews() {
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    setIsLoading(true);
     getReviews(category, sortBy, order)
       .then((reviews) => {
         setReviews(reviews);
