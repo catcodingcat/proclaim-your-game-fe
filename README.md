@@ -21,7 +21,7 @@ Firstly, open your terminal and cd into your preferred directory.
 Next, enter the following command to clone the Proclaim Your Game repo:
 
 ```bash
-git clone https://github.com/catcodingcat/backend-project-nc-games.git
+git clone https://github.com/catcodingcat/proclaim-your-game-fe.git
 ```
 
 and then open this with your desired code editor.
