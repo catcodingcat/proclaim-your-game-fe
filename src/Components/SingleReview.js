@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getReview, getReviewComments } from "../Utils/api";
+import { dateFormatter } from "../Utils/dateFormatter";
 import { UserContext } from "../Context/user";
 import { useContext } from "react";
 import AmendVotes from "./AmendVotes";
@@ -80,7 +81,7 @@ export default function SingleReview() {
           <div className="review-info">
             <p className="designer">Game designer: {review.designer}</p>
             <p className="category">Game category: {review.category}</p>
-            <p className="created_at">{review.created_at}</p>
+            <p className="created_at">{dateFormatter(review.created_at)}</p>
           </div>
           <AmendVotes
             id={review.review_id}
@@ -111,7 +112,9 @@ export default function SingleReview() {
                   {comment.author}
                 </button>
 
-                <p className="comment-date">{comment.created_at}</p>
+                <p className="comment-date">
+                  {dateFormatter(comment.created_at)}
+                </p>
                 <AmendVotes
                   id={comment.comment_id}
                   votes={comment.votes}

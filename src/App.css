@@ -62,7 +62,7 @@ section {
   padding-top: 40px;
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
+  /* align-content: flex-start; */
   justify-content: center;
 }
 
@@ -74,6 +74,7 @@ section {
 #user-section {
   height: 100%;
   background-color: rgb(198, 223, 224);
+  align-content: flex-start;
 }
 
 h2 {
@@ -115,7 +116,8 @@ h3 {
   border-top-left-radius: 10vh;
   padding: 8px;
   width: 52px;
-  margin-left: 5px;
+  margin-left: 50px;
+  margin-top: 10px;
 }
 
 .query-options {
@@ -126,8 +128,9 @@ h3 {
   text-align: center;
   color: rgb(121, 180, 183);
   padding: 8px;
-  width: 130px;
-  margin-right: 5px;
+  width: 160px;
+  margin-right: 50px;
+  margin-top: 10px;
 }
 
 .cards {
@@ -158,6 +161,7 @@ button {
 }
 
 #home-card {
+  height: min-content;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas:
     "title"
@@ -222,7 +226,7 @@ button {
 
 #single-review-card {
   height: min-content;
-  width: 450px;
+  width: 50%;
   margin-left: 0px;
   margin-right: 0px;
   padding: 20px;
@@ -237,7 +241,7 @@ button {
 
 .review-card-owner {
   padding-bottom: 0;
-  width: 350px;
+  width: 100%;
   background-color: rgb(254, 251, 243);
 }
 
@@ -257,6 +261,8 @@ button {
 #comment-section {
   padding-top: 0;
   align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #comment-cards {
@@ -265,12 +271,10 @@ button {
   background-color: rgb(254, 251, 243);
   border: solid rgb(121, 180, 183);
   height: min-content;
-  width: 450px;
-  margin-left: 0px;
-  margin-right: 0px;
-  padding: 20px;
-  margin-top: 0;
+  width: 50%;
+  margin: 0px;
   margin-bottom: 8px;
+  padding: 20px;
   display: grid;
   grid-template-rows: auto auto;
   grid-template-columns: 1fr 2fr 1fr;
@@ -284,7 +288,7 @@ button {
   margin-top: 0;
   padding-top: 0;
   height: min-content;
-  width: 450px;
+  width: 50%;
   margin-left: 0px;
   margin-right: 0px;
   padding: 20px;
@@ -302,12 +306,12 @@ button {
 
 #comment-body-label {
   color: rgb(121, 180, 183);
-  width: 350px;
+  width: 100%;
 }
 
 #comment-body-input {
   margin-top: 8px;
-  width: 300px;
+  width: 80%;
   height: 80px;
   border: solid rgb(121, 180, 183);
   border-width: thin;
@@ -377,12 +381,44 @@ button {
   margin-right: 5px;
 }
 
+.add-vote-disabled {
+  color: rgb(254, 251, 243);
+  background-color: rgb(214, 214, 214);
+  grid-area: buttons;
+  width: 34px;
+  height: 34px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.minus-vote-disabled {
+  color: rgb(254, 251, 243);
+  background-color: rgb(214, 214, 214);
+  grid-area: buttons;
+  width: 34px;
+  height: 34px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 #comment-cards .add-vote {
-  margin-left: 17px;
+  margin-left: 21px;
 }
 
 #comment-cards .minus-vote {
-  margin-left: 62px;
+  margin-left: 66px;
+}
+
+#comment-cards .add-vote-disabled {
+  margin-left: 21px;
+  color: rgb(254, 251, 243);
+  background-color: rgb(214, 214, 214);
+}
+
+#comment-cards .minus-vote-disabled {
+  margin-left: 66px;
+  color: rgb(254, 251, 243);
+  background-color: rgb(214, 214, 214);
 }
 
 #single-user-card {
@@ -442,7 +478,7 @@ button {
 .login-button,
 .logout-button,
 .username-login-button {
-  height: 28px;
+  height: 4vh;
   width: 60px;
   padding: 0;
   border-radius: 0;

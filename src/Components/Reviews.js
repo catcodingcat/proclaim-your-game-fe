@@ -1,4 +1,5 @@
 import { getReviews } from "../Utils/api";
+import { dateFormatter } from "../Utils/dateFormatter";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
@@ -105,7 +106,9 @@ export default function Reviews() {
               ></img>
               <div className="review-info">
                 <p className="category">Category: {review.category}</p>
-                <p className="created_at">Created at: {review.created_at}</p>
+                <p className="created_at">
+                  Created at: {dateFormatter(review.created_at)}
+                </p>
                 <p className="votes">Votes: {review.votes}</p>
                 <p className="comment_count">
                   Comments: {review.comment_count}
