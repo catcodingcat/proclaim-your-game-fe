@@ -76,11 +76,6 @@ section {
   background-color: rgb(198, 223, 224);
 }
 
-#temporary-review-message {
-  background-color: red;
-  color: white;
-}
-
 h2 {
   height: 12vh;
   color: rgb(157, 157, 157);

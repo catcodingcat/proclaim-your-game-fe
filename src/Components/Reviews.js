@@ -2,7 +2,7 @@ import { getReviews } from "../Utils/api";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-export default function AllReviews() {
+export default function Reviews() {
   let { category } = useParams();
   let navigate = useNavigate();
 

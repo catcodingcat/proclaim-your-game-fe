@@ -7,7 +7,7 @@ import AmendVotes from "./AmendVotes";
 import PostComment from "./PostComment";
 import DeleteComment from "./DeleteComment";
 
-export default function ItemPage() {
+export default function SingleReview() {
   const { review_id } = useParams();
   const { user } = useContext(UserContext);
   let navigate = useNavigate();

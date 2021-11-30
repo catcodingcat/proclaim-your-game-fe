@@ -11,8 +11,6 @@ export default function AmendVotes({ id, votes, type, author }) {
     e.preventDefault();
     const vote = parseInt(e.target.value);
     setAddedVotes((prevVotes) => prevVotes + vote);
-    ///set error is false in a .then?
-    //do I need a .catch in optimistic rendering?
     patchVotes(id, vote, type).catch(() => {
       setIsError(true);
       setAddedVotes((prevVotes) => prevVotes - vote);

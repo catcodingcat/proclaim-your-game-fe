@@ -10,13 +10,6 @@ export default function Home() {
             Welcome to Proclaim Your Game - a fantastic forum harbouring a range
             of reviews for games genres.
           </h3>
-          <p id="temporary-review-message">
-            Hello lovely NC reviewers! Please note that when nchelp is back open
-            I am hoping to sort the user login, as well as asking about comment
-            posting with onChange. Plus still working on a couple of css things
-            (comments related). Hopefully you enjoy the rest of my site! Thanks
-            you lovely lot!
-          </p>
           <p>
             Search up our classic categories, read reviews about a family
             favourite, leave comments about that new board-on-the-block, and so
