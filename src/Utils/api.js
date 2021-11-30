@@ -4,10 +4,10 @@ const proclaimYourGameApi = axios.create({
   baseURL: "https://proclaim-your-game.herokuapp.com/api",
 });
 
-export const getReviews = (category, sortBy, order) => {
+export const getReviews = (category, sortBy, order, pageNo) => {
   return proclaimYourGameApi
     .get("/reviews", {
-      params: { category, sort_by: sortBy, order },
+      params: { category, sort_by: sortBy, order, p: pageNo },
     })
     .then((res) => {
       return res.data.reviews;

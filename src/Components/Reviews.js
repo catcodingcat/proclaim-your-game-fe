@@ -1,21 +1,23 @@
 import { getReviews } from "../Utils/api";
 import { dateFormatter } from "../Utils/dateFormatter";
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 
 export default function Reviews() {
   let { category } = useParams();
   let navigate = useNavigate();
+  // let { search } = useLocation();
 
   const [reviews, setReviews] = useState([]);
   const [sortBy, setSortBy] = useState("created_at");
   const [order, setOrder] = useState("desc");
+  const [pageNo, setPageNo] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    getReviews(category, sortBy, order)
+    getReviews(category, sortBy, order, pageNo)
       .then((reviews) => {
         setReviews(reviews);
         setIsLoading(false);
@@ -26,11 +28,16 @@ export default function Reviews() {
         setIsError(true);
         setErrorMsg(err.response.data.msg);
       });
-  }, [category, sortBy, order]);
+  }, [category, sortBy, order, pageNo]);
 
   const handleAuthorClick = (e) => {
     e.preventDefault();
     navigate(`/users/${e.target.value}`);
+  };
+
+  const handlePageClick = (e) => {
+    // navigate(`/reviews?p=${e.target.value}`);
+    setPageNo(e.target.value);
   };
 
   if (isLoading) return <p className="loading">...loading</p>;
@@ -124,6 +131,19 @@ export default function Reviews() {
           );
         })}
       </section>
+      {category === undefined ? (
+        <section className="pages">
+          <button value="1" className="page-number" onClick={handlePageClick}>
+            1
+          </button>
+          <button value="2" className="page-number" onClick={handlePageClick}>
+            2
+          </button>
+          <button value="3" className="page-number" onClick={handlePageClick}>
+            3
+          </button>
+        </section>
+      ) : null}
     </main>
   );
 }
