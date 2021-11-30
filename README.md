@@ -9,7 +9,7 @@ Search up our classic categories, filter reviews by several sifts, leave comment
 
 You can find a link to the hosted web app here: ///////
 
-You can also view the hosted back-end API created for this project, as well as the associated github repository. ///////
+You can also view the [hosted back-end API](https://dashboard.heroku.com/apps/proclaim-your-game) created for this project, as well as the associated [github repository](https://github.com/catcodingcat/proclaim-your-game-be).
 
 
 ## Running locally
