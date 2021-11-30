@@ -14,6 +14,7 @@ export default function SingleReview() {
 
   const [review, setReview] = useState({});
   const [comments, setComments] = useState([]);
+  const [hideComments, setHideComments] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [isDeleted, setIsDeleted] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -33,12 +34,13 @@ export default function SingleReview() {
       });
   }, [review_id]);
 
-  const handleCommentClick = (e) => {
+  const handleShowCommentClick = (e) => {
     e.preventDefault();
     return getReviewComments(review_id)
       .then((comments) => {
         setComments(comments);
         setIsError(false);
+        setHideComments(false);
       })
       .catch((err) => {
         setIsLoading(false);
@@ -87,53 +89,59 @@ export default function SingleReview() {
             author={review.author}
           />
           <p className="comment_count">Comments: {review.comment_count}</p>
-          <button onClick={handleCommentClick}>See comments</button>
+          {hideComments ? (
+            <button onClick={handleShowCommentClick}>See comments</button>
+          ) : (
+            <button onClick={() => setHideComments(true)}>Hide comments</button>
+          )}
         </div>
       </section>
-      <section id="comment-section">
-        {comments.map((comment) => {
-          return (
-            <div key={comment.comment_id} id="comment-cards">
-              <p className="comment-body">{comment.body}</p>
+      {!hideComments ? (
+        <section id="comment-section">
+          {comments.map((comment) => {
+            return (
+              <div key={comment.comment_id} id="comment-cards">
+                <p className="comment-body">{comment.body}</p>
 
-              <button
-                className="comment-author"
-                value={comment.author}
-                onClick={handleAuthorClick}
-              >
-                {comment.author}
-              </button>
+                <button
+                  className="comment-author"
+                  value={comment.author}
+                  onClick={handleAuthorClick}
+                >
+                  {comment.author}
+                </button>
 
-              <p className="comment-date">{comment.created_at}</p>
-              <AmendVotes
-                id={comment.comment_id}
-                votes={comment.votes}
-                type="comment"
-                author={comment.author}
-              />
-              {comment.author === user.username ? (
-                <DeleteComment
-                  comment={comment}
-                  setIsDeleted={setIsDeleted}
-                  setComments={setComments}
-                  setReview={setReview}
+                <p className="comment-date">{comment.created_at}</p>
+                <AmendVotes
+                  id={comment.comment_id}
+                  votes={comment.votes}
+                  type="comment"
+                  author={comment.author}
                 />
-              ) : null}
-            </div>
-          );
-        })}
-        {isDeleted ? (
-          <p className="confirmation" onMouseMove={() => setIsDeleted(false)}>
-            Your comment has been deleted.
-          </p>
-        ) : null}
-        <PostComment
-          comments={comments}
-          setComments={setComments}
-          review_id={review_id}
-          setReview={setReview}
-        />
-      </section>
+                {comment.author === user.username ? (
+                  <DeleteComment
+                    comment={comment}
+                    setIsDeleted={setIsDeleted}
+                    setComments={setComments}
+                    setReview={setReview}
+                  />
+                ) : null}
+              </div>
+            );
+          })}
+          {isDeleted ? (
+            <p className="confirmation" onMouseMove={() => setIsDeleted(false)}>
+              Your comment has been deleted.
+            </p>
+          ) : null}
+          <PostComment
+            comments={comments}
+            setComments={setComments}
+            review_id={review_id}
+            setReview={setReview}
+          />
+        </section>
+      ) : null}
     </main>
   );
 }
