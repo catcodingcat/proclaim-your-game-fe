@@ -47,7 +47,7 @@ npm start
 
 ### Viewing the live server
 A tab in your internet browser should automatically open and display the home page of the app.
-If it doesn't, either right click the index.html file in the file explorer and select 'Open With Live Server', or if using VSCode you can simply click the 'Go Live' button in the bottom right.
+If it doesn't and you are using VSCode, you can simply click the 'Port: [port number]' button in the bottom right.
 
 
 
