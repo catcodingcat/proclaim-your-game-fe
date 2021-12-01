@@ -87,7 +87,7 @@ export default function SingleReview() {
             id={review.review_id}
             votes={review.votes}
             type="review"
-            author={review.author}
+            author={review.owner}
           />
           <p className="comment_count">Comments: {review.comment_count}</p>
           {hideComments ? (

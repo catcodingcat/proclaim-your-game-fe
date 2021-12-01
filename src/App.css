@@ -228,7 +228,7 @@ button {
 
 #single-review-card {
   height: min-content;
-  width: 50%;
+  width: 70vw;
   margin-left: 0px;
   margin-right: 0px;
   padding: 20px;
@@ -273,13 +273,14 @@ button {
   background-color: rgb(254, 251, 243);
   border: solid rgb(121, 180, 183);
   height: min-content;
-  width: 50%;
+  width: 70vw;
   margin: 0px;
   margin-bottom: 8px;
   padding: 20px;
+  padding-bottom: 30px;
   display: grid;
   grid-template-rows: auto auto;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
   grid-template-areas:
     "body body votes"
     "author date buttons";
@@ -290,7 +291,7 @@ button {
   margin-top: 0;
   padding-top: 0;
   height: min-content;
-  width: 50%;
+  width: 70vw;
   margin-left: 0px;
   margin-right: 0px;
   padding: 20px;
@@ -308,12 +309,12 @@ button {
 
 #comment-body-label {
   color: rgb(121, 180, 183);
-  width: 100%;
+  width: 70vw;
 }
 
 #comment-body-input {
   margin-top: 8px;
-  width: 80%;
+  width: 55vw;
   height: 80px;
   border: solid rgb(121, 180, 183);
   border-width: thin;
@@ -363,7 +364,7 @@ button {
   margin-bottom: 10px;
   margin-right: 0;
   margin-left: 0;
-  width: 350px;
+  width: 100%;
 }
 
 .vote-count {

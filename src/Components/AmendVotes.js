@@ -26,6 +26,7 @@ export default function AmendVotes({ id, votes, type, author }) {
   return (
     <>
       <p className="vote-count">Votes: {votes + addedVotes}</p>
+      {console.log(author, "<<<author")}
       {author !== user.username ? (
         !isPlusDisabled ? (
           <button value="1" onClick={handleVoteClick} className="add-vote">
