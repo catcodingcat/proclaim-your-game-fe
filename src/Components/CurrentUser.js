@@ -20,61 +20,13 @@ export default function CurrentUser() {
 
   const handleLogIn = (e) => {
     e.preventDefault();
-    setUser({
-      username: "cooljmessy",
-      name: "Peter Messy",
-      avatar_url:
-        "https://vignette.wikia.nocookie.net/mrmen/images/1/1a/MR_MESSY_4A.jpg/revision/latest/scale-to-width-down/250?cb=20170730171002",
-    });
+    return getUser(username)
+      .then((user) => {
+        setUser(user);
+        setIsError(false);
+      })
+      .catch(() => setIsError(true));
   };
-
-  // const handleSubmit = (e) => {
-  //   console.log(username, "<<<username in handle");
-  //   // e.preventDefault();
-  //   // console.log(e.target.value, "<<<username");
-  //   // return getUser(username)
-  //   //   .then((user) => {
-  //   //     setUser(user);
-  //   //     setIsError(false);
-  //   //   })
-  //   //   .catch(() => setIsError(true));
-  // };
-
-  const login = () => {
-    setHideLogin(true);
-    setHideUsernameLogin(false);
-    return (
-      <form className="username-form">
-        <fieldset className="username-login">
-          <label id="username-login-label"></label>
-          Username:
-          <input
-            type="text"
-            value={user.username}
-            name="username"
-            id="username-login-input"
-            required
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-          />
-        </fieldset>
-        <button
-          className="username-login-button"
-          onClick={handleLogIn}
-          type="submit"
-        >
-          Login
-        </button>
-        {isError ? (
-          <p>Sorry, that username doesn't exist. Please try again.</p>
-        ) : null}
-      </form>
-    );
-  };
-
-  //////WHY DOES IT SET OUTSIDE BUT IN HANDLESUBMIT OR HANDLECLICK IT'S BACK TO ORIGINAL STATE?
-  console.log(username, "<<username outside");
 
   if (user.username) {
     return (
@@ -95,9 +47,42 @@ export default function CurrentUser() {
   } else {
     return (
       <section className="login-area" id="login">
-        {!hideUsernameLogin ? <div>{loginForm}</div> : null}
-        {!hideLogin ? (
-          <button className="login-button" onClick={() => setLoginForm(login)}>
+        {!hideUsernameLogin ? (
+          <div>
+            <form className="username-form">
+              <fieldset className="username-login">
+                <label id="username-login-label"></label>
+                Username:
+                <input
+                  type="text"
+                  value={user.username}
+                  name="username"
+                  id="username-login-input"
+                  required
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                    setIsError(false);
+                  }}
+                />
+              </fieldset>
+              <button
+                className="username-login-button"
+                onClick={handleLogIn}
+                type="submit"
+              >
+                Login
+              </button>
+              {isError ? (
+                <p>Sorry, that username doesn't exist. Please try again.</p>
+              ) : null}
+            </form>
+          </div>
+        ) : null}
+        {!hideLogin && hideUsernameLogin ? (
+          <button
+            className="login-button"
+            onClick={() => setHideUsernameLogin(false)}
+          >
             Login
           </button>
         ) : null}
