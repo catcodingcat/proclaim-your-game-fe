@@ -53,12 +53,13 @@ export default function PostComment({
             }}
           />
         </fieldset>
-        <button type="submit">Post comment!</button>
-        {isError ? (
+        {Object.keys(user).length < 1 ? (
           <p className="custom-error">
             You must be logged in to post a comment.
           </p>
-        ) : null}
+        ) : (
+          <button type="submit">Post comment!</button>
+        )}
         {isPosted ? (
           <p className="confirmation">Your comment has been posted.</p>
         ) : null}

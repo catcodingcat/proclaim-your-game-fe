@@ -36,7 +36,6 @@ export default function Reviews() {
   };
 
   const handlePageClick = (e) => {
-    // navigate(`/reviews?p=${e.target.value}`);
     setPageNo(e.target.value);
   };
 
